@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="appData()" x-init="init()" class="scroll-smooth">
+<html lang="en" x-data="appData()" x-init="init()" class="scroll-smooth" style="cursor: url('logo.png'), auto;">
 <head>
   <meta charset="UTF-8">
   <title>McDonlads - Quality Food & Careers</title>
@@ -15,6 +15,10 @@
   <!-- Animate.css for fade animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
+    /* Global custom cursor for all elements so it doesn't change on hover */
+    * {
+      cursor: url('logo.png'), auto !important;
+    }
     /* Custom Intro.js tooltip styling to match our theme */
     .introjs-tooltip {
       background: #fff;
@@ -83,51 +87,59 @@
     <div class="container mx-auto px-4 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg animate__animated animate__fadeInUp">
       <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Careers</h2>
       <p class="mb-6 text-gray-700" data-intro="Ready to upgrade your hustle? Fill out the details to join the team—think of it as your ticket to that next Lambo moment." data-step="1">
-        We’re looking for dedicated individuals with grit and vision. If you’re ready to hodl through the grind and ride that moonshot, complete your application below.
+        Alright, listen up, kiddo. What's the CA? You think you can just ape into this game without knowing the basics? We’re not here for your FOMO – we want real hustlers who know when to ape or nah. If you're serious, dump this shit homie and complete your application below.
+        <br>
+        <span class="text-xs text-gray-500">P.S. Back in my day, we didn’t chase every coin – we did our homework, so get with it.</span>
       </p>
       <!-- Application Form -->
       <form @submit.prevent="submitForm" class="space-y-6">
-        <div data-intro="Enter your name—every legend starts with one." data-step="2">
-          <label for="name" class="block text-gray-800 font-medium">Full Name</label>
-          <input id="name" type="text" placeholder="e.g., John Doe" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+        <div data-intro="Enter your Telegram username—make sure it’s one that the bots envy." data-step="2">
+          <label for="telegram" class="block text-gray-800 font-medium">Telegram Username</label>
+          <input id="telegram" type="text" placeholder="e.g., @cryptolegend" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
         </div>
-        <div data-intro="Your email—keep it active like your crypto wallet." data-step="3">
-          <label for="email" class="block text-gray-800 font-medium">Email Address</label>
-          <input id="email" type="email" placeholder="e.g., john@example.com" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+        <div data-intro="Your Twitter handle—because your tweets speak volumes." data-step="3">
+          <label for="twitter" class="block text-gray-800 font-medium">Twitter Handle</label>
+          <input id="twitter" type="text" placeholder="e.g., @crypto_wiz" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
         </div>
-        <div data-intro="Pick your role. Whether you're a frontline hustler or a behind‑the‑scenes strategist, we need you." data-step="4">
+        <div data-intro="Pick your role. Whether you're hustling on the floor or slinging behind the scenes, we got you. (Payout is max $7/hr)" data-step="4">
           <label for="position" class="block text-gray-800 font-medium">Position Applying For</label>
           <select id="position" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
             <option value="">Select a position</option>
-            <option value="crew">Crew Member</option>
-            <option value="manager">Manager</option>
-            <option value="cook">Cook</option>
-            <option value="cashier">Cashier</option>
+            <option value="crew">Crew Member ($7/hr)</option>
+            <option value="manager">Manager ($7/hr)</option>
+            <option value="cook">Cook ($7/hr)</option>
+            <option value="cashier">Cashier ($7/hr)</option>
+            <option value="fry-bagger">Fry Bagger ($7/hr)</option>
           </select>
         </div>
-        <div data-intro="Lay out your work experience—no cap, just the facts. Let us know if you’ve made moves that even the crypto bros would respect." data-step="5">
-          <label for="experience" class="block text-gray-800 font-medium">Work Experience</label>
-          <textarea id="experience" rows="4" placeholder="Share your journey or that one epic trade that almost went to the moon..." class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"></textarea>
+        <div data-intro="Tell us about that coin that almost made you rich. Spill the tea!" data-step="5">
+          <label for="experience" class="block text-gray-800 font-medium">Tell us about that coin that almost made you rich</label>
+          <textarea id="experience" rows="4" placeholder="Share the story of that epic trade..." class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"></textarea>
         </div>
-        <div data-intro="How’s your mental state? Whether you're chill or feeling rekt, let us know." data-step="6">
+        <div data-intro="How’s your mental state? Choose the vibe that best fits your mood." data-step="6">
           <label for="mentalHealth" class="block text-gray-800 font-medium">Mental Health Status</label>
           <select id="mentalHealth" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
             <option value="">Choose one</option>
-            <option value="great">I'm chill, ready to ride the wave.</option>
-            <option value="meh">Not feeling it after those moves.</option>
-            <option value="help">I need a breather.</option>
+            <option value="great">I'm chill – riding the crypto waves.</option>
+            <option value="stressed">Stress level: FOMO is real.</option>
+            <option value="rekt">I'm rekt – send me some memes.</option>
           </select>
         </div>
-        <div data-intro="Share your risk-taking style—whether you're a cautious hodler or a full-on degen, we wanna know." data-step="7">
+        <div data-intro="How wild are your trades? Let us know if you're a cautious hodler or a full-on degen." data-step="7">
           <label for="gambling" class="block text-gray-800 font-medium">Gambling Habits</label>
           <select id="gambling" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
             <option value="">Choose one</option>
-            <option value="none">I play it safe.</option>
-            <option value="sometimes">I take a chance now and then.</option>
-            <option value="often">I'm all in, degen style.</option>
+            <option value="none">I bet only on my feelings.</option>
+            <option value="sometimes">I flirt with risk – sometimes.</option>
+            <option value="often">I'm all in – degen life.</option>
           </select>
         </div>
-        <button type="submit" class="w-full py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition" data-intro="When you're set, hit submit and start your next chapter—let's get this bread!" data-step="8">
+        <div data-intro="Enter your Phantom Wallet All Time High. Tell us how high you once soared!" data-step="8">
+          <label for="phantom" class="block text-gray-800 font-medium">Phantom Wallet All Time High</label>
+          <input id="phantom" type="text" placeholder="e.g., $420,000" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+          <span class="text-xs text-gray-500">No need to be modest—this is all about bragging rights.</span>
+        </div>
+        <button type="submit" class="w-full py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition" data-intro="When you're set, hit submit and start your next chapter—let's get this bread!" data-step="9">
           Submit Application
         </button>
       </form>
@@ -155,7 +167,7 @@
         // Show the popup tutorial on page load.
         showModal: true,
         init() {
-          // Any additional initialization logic can be added here.
+          // Additional initialization logic can go here.
         },
         startTour() {
           this.showModal = false;
@@ -167,32 +179,36 @@
                 intro: "Welcome to McDonlads. Ready to level up? Let's walk through the essentials."
               },
               {
-                element: document.querySelector('#name'),
-                intro: "Enter your name—every legend starts with one."
+                element: document.querySelector('#telegram'),
+                intro: "Enter your Telegram username—make sure it’s one that the bots envy."
               },
               {
-                element: document.querySelector('#email'),
-                intro: "Your email—keep it active like your crypto wallet."
+                element: document.querySelector('#twitter'),
+                intro: "Your Twitter handle—because your tweets speak volumes."
               },
               {
                 element: document.querySelector('#position'),
-                intro: "Pick your role. Frontline or back‑office, we need all hands on deck."
+                intro: "Pick your role. Frontline or back‑office, we need all hands on deck (max $7/hr)."
               },
               {
                 element: document.querySelector('#experience'),
-                intro: "Share your work experience. No cap—just the facts."
+                intro: "Tell us about that coin that almost made you rich. Spill the tea!"
               },
               {
                 element: document.querySelector('#mentalHealth'),
-                intro: "How are you feeling? Whether you're chill or rekt, we've got you."
+                intro: "How are you feeling? Choose the vibe that best fits your mood."
               },
               {
                 element: document.querySelector('#gambling'),
-                intro: "Let us know your risk appetite—cautious hodler or full-on degen."
+                intro: "How wild are your trades? Let us know if you're a cautious hodler or a full-on degen."
+              },
+              {
+                element: document.querySelector('#phantom'),
+                intro: "Enter your Phantom Wallet All Time High. Tell us how high you once soared!"
               },
               {
                 element: document.querySelector('button[type=submit]'),
-                intro: "When you're ready, hit submit and start your next chapter."
+                intro: "When you're set, hit submit and start your next chapter."
               }
             ]
           }).start();
