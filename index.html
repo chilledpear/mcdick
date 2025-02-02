@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" x-data="appData()" x-init="init()" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>McDonlads - Quality Food & Careers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js for reactivity -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <!-- Intro.js CSS -->
+  <link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet">
+  <!-- Intro.js JS -->
+  <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+  <!-- Animate.css for fade animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Custom Intro.js tooltip styling to match our theme */
+    .introjs-tooltip {
+      background: #fff;
+      color: #1f2937;
+      border: 2px solid #da291c;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .introjs-tooltipbuttons button {
+      background: #da291c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 0 5px;
+    }
+    .introjs-tooltipbuttons button:hover {
+      background: #b21a14;
+    }
+  </style>
+</head>
+<!-- Set the overall background image behind everything -->
+<body class="bg-gray-50" style="background-image: url('background.jpg'); background-size: cover; background-position: center;">
+  <!-- Fullscreen Modal for Popup Tutorial -->
+  <div x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-xl w-full animate__animated animate__fadeInUp">
+      <h2 class="text-3xl font-bold mb-4 text-red-600">Welcome!</h2>
+      <p class="mb-4 text-gray-700">
+        Markets left you broke? Time to upgrade your hustle. Get ready to join the team and stack those wins—no FOMO, just the next Lambo moment.
+      </p>
+      <button @click="startTour()" class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+        Start Tour
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation Bar with Logo -->
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center">
+        <!-- Logo image (logo.png) -->
+        <img src="logo.png" alt="McDonlads Logo" class="h-10 mr-2">
+        <span class="text-2xl font-bold text-red-600">McDonlads</span>
+      </a>
+      <ul class="flex space-x-6">
+        <li><a href="#" class="text-gray-800 hover:text-red-600">Home</a></li>
+        <li><a href="#" class="text-gray-800 hover:text-red-600">Menu</a></li>
+        <li><a href="#" class="text-gray-800 hover:text-red-600">Locations</a></li>
+        <li><a href="#careers" class="text-gray-800 hover:text-red-600">Careers</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Reduced Height) -->
+  <header class="bg-red-600 text-white py-14 animate__animated animate__fadeInUp">
+    <div class="container mx-auto text-center">
+      <h1 class="text-5xl font-extrabold">Welcome to McDonlads</h1>
+      <p class="mt-4 text-2xl">Serving quality food and opportunity since day one.</p>
+    </div>
+  </header>
+
+  <!-- Careers Section with Full-Width Background Image -->
+  <section id="careers" class="py-16 relative" style="background-image: url('careers-bg.jpg'); background-size: cover; background-position: center;">
+    <div class="container mx-auto px-4 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg animate__animated animate__fadeInUp">
+      <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Careers</h2>
+      <p class="mb-6 text-gray-700" data-intro="Ready to upgrade your hustle? Fill out the details to join the team—think of it as your ticket to that next Lambo moment." data-step="1">
+        We’re looking for dedicated individuals with grit and vision. If you’re ready to hodl through the grind and ride that moonshot, complete your application below.
+      </p>
+      <!-- Application Form -->
+      <form @submit.prevent="submitForm" class="space-y-6">
+        <div data-intro="Enter your name—every legend starts with one." data-step="2">
+          <label for="name" class="block text-gray-800 font-medium">Full Name</label>
+          <input id="name" type="text" placeholder="e.g., John Doe" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+        </div>
+        <div data-intro="Your email—keep it active like your crypto wallet." data-step="3">
+          <label for="email" class="block text-gray-800 font-medium">Email Address</label>
+          <input id="email" type="email" placeholder="e.g., john@example.com" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+        </div>
+        <div data-intro="Pick your role. Whether you're a frontline hustler or a behind‑the‑scenes strategist, we need you." data-step="4">
+          <label for="position" class="block text-gray-800 font-medium">Position Applying For</label>
+          <select id="position" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+            <option value="">Select a position</option>
+            <option value="crew">Crew Member</option>
+            <option value="manager">Manager</option>
+            <option value="cook">Cook</option>
+            <option value="cashier">Cashier</option>
+          </select>
+        </div>
+        <div data-intro="Lay out your work experience—no cap, just the facts. Let us know if you’ve made moves that even the crypto bros would respect." data-step="5">
+          <label for="experience" class="block text-gray-800 font-medium">Work Experience</label>
+          <textarea id="experience" rows="4" placeholder="Share your journey or that one epic trade that almost went to the moon..." class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"></textarea>
+        </div>
+        <div data-intro="How’s your mental state? Whether you're chill or feeling rekt, let us know." data-step="6">
+          <label for="mentalHealth" class="block text-gray-800 font-medium">Mental Health Status</label>
+          <select id="mentalHealth" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+            <option value="">Choose one</option>
+            <option value="great">I'm chill, ready to ride the wave.</option>
+            <option value="meh">Not feeling it after those moves.</option>
+            <option value="help">I need a breather.</option>
+          </select>
+        </div>
+        <div data-intro="Share your risk-taking style—whether you're a cautious hodler or a full-on degen, we wanna know." data-step="7">
+          <label for="gambling" class="block text-gray-800 font-medium">Gambling Habits</label>
+          <select id="gambling" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500">
+            <option value="">Choose one</option>
+            <option value="none">I play it safe.</option>
+            <option value="sometimes">I take a chance now and then.</option>
+            <option value="often">I'm all in, degen style.</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition" data-intro="When you're set, hit submit and start your next chapter—let's get this bread!" data-step="8">
+          Submit Application
+        </button>
+      </form>
+      <!-- Optional Tour Trigger Button -->
+      <div class="mt-8 text-center">
+        <button @click="startTour()" class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+          Take the Tour
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mock Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="mb-2">&copy; 2025 McDonlads. All rights reserved.</p>
+      <p class="text-sm">Quality food. Quality hustle. Built for those who know the game.</p>
+    </div>
+  </footer>
+
+  <!-- Alpine.js App Data & Methods -->
+  <script>
+    function appData() {
+      return {
+        // Show the popup tutorial on page load.
+        showModal: true,
+        init() {
+          // Any additional initialization logic can be added here.
+        },
+        startTour() {
+          this.showModal = false;
+          // Start the Intro.js tour. The first slide is a standalone welcome message.
+          introJs().setOptions({
+            tooltipClass: 'introjs-tooltip',
+            steps: [
+              {
+                intro: "Welcome to McDonlads. Ready to level up? Let's walk through the essentials."
+              },
+              {
+                element: document.querySelector('#name'),
+                intro: "Enter your name—every legend starts with one."
+              },
+              {
+                element: document.querySelector('#email'),
+                intro: "Your email—keep it active like your crypto wallet."
+              },
+              {
+                element: document.querySelector('#position'),
+                intro: "Pick your role. Frontline or back‑office, we need all hands on deck."
+              },
+              {
+                element: document.querySelector('#experience'),
+                intro: "Share your work experience. No cap—just the facts."
+              },
+              {
+                element: document.querySelector('#mentalHealth'),
+                intro: "How are you feeling? Whether you're chill or rekt, we've got you."
+              },
+              {
+                element: document.querySelector('#gambling'),
+                intro: "Let us know your risk appetite—cautious hodler or full-on degen."
+              },
+              {
+                element: document.querySelector('button[type=submit]'),
+                intro: "When you're ready, hit submit and start your next chapter."
+              }
+            ]
+          }).start();
+        },
+        submitForm() {
+          alert("Application Submitted! Welcome aboard—time to hodl and hustle.");
+        }
+      }
+    }
+  </script>
+</body>
+</html>
